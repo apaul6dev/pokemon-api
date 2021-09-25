@@ -1,0 +1,31 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 9.99
+  name: MyString
+  type_onw: MyString
+  type_two: MyString
+  total: 9.99
+  hp: 9.99
+  attack: 9.99
+  defense: 9.99
+  sp_atk: 9.99
+  sp_def: 9.99
+  speed: 9.99
+  generation: 9.99
+  legendary: false
+
+two:
+  id: 9.99
+  name: MyString
+  type_onw: MyString
+  type_two: MyString
+  total: 9.99
+  hp: 9.99
+  attack: 9.99
+  defense: 9.99
+  sp_atk: 9.99
+  sp_def: 9.99
+  speed: 9.99
+  generation: 9.99
+  legendary: false
