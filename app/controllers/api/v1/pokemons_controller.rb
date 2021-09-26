@@ -1,13 +1,22 @@
 module Api
     module V1
         class PokemonsController < ApplicationController
+            require 'will_paginate/array'
             def index
-                pokemons = Pokemon.order('id');
+
+                pokemons = []
+                Pokemon.all.each do |pokemon|
+                    pokemons.push(pokemon)
+                end
+
+                pokemons = pokemons.paginate(page: params[:page], per_page: 10);
+
                 render json: {
                     status: 'Success',
-                    message: 'All Pokemons',
+                    message: 'Page Pokemons',
                     data: pokemons
                 }, status: :ok
+
             end
 
             def show
