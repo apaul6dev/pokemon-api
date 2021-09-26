@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2021_09_25_214321) do
 
   create_table "pokemons", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
-    t.string "type_onw"
+    t.string "type_one"
     t.string "type_two"
     t.decimal "total", precision: 10
     t.decimal "hp", precision: 10
