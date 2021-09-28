@@ -135,17 +135,40 @@ module Api
                 end  
 
                 if pokemons.size > 0
-
                     
+                    pokemonsTmp = Pokemon.new(pokemon_params);
 
+                    pokemonsTmp.attributes.each do |attr_name, attr_value|
+                        if pokemonsTmp[attr_name].present?
+                            pokemons[0][attr_name] = attr_value
+                        end
+                    end
 
+                    csv.delete_if do |row|
+                        row['#'] == params[:id]
+                    end
+                
+                    File.open(Rails.root.join("lib", "csvs", "pokemon.csv"), 'w') do |f|
+                        f.write(csv)
+                    end
 
+                    columns = [ 'id', 'name', 'type_one', 'type_two',
+                    'total', 'hp', 'attack', 'defense',
+                    'sp_atk', 'sp_def', 'speed', 'generation',
+                    'legendary' ]
 
+                    CSV.open(Rails.root.join("lib", "csvs", "pokemon.csv"), "a") do |csv|
+                        row_str = []
+                        columns.each do |attr_name|
+                            row_str.push(pokemons[0][attr_name]) 
+                        end 
+                        csv << row_str
+                    end
 
                     render json: {
                         status: 'Success',
                         message: 'Pokemon udated',
-                        data: pokemons
+                        data: [pokemons[0]]
                     }, status: :ok
                 else
                     render json: {
