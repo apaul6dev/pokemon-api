@@ -26,24 +26,35 @@ Things you may want to cover:
 
 
 * Get 10 pokemons, page 10
+
 method: get
+
 http://127.0.0.1:3000/api/v1/pokemons?page=10
 
-get pokemon by id (701)
+* get pokemon by id (701)
+
 method: get
+
 http://127.0.0.1:3000/api/v1/pokemons/701
 
 
 * update register 1
+
 method: put
+
 http://127.0.0.1:3000/api/v1/pokemons/1
+
 Params
+
 {"name": "Bulbasaur" }
 
 
 * Create new pokemon
+
 method: post
+
 http://127.0.0.1:3000/api/v1/pokemons
+
 Params
 	{
         "name": "New Pokemon",
@@ -62,5 +73,7 @@ Params
  	}
 
 * destroy pokemon 803
+
 method: delete
+
 http://127.0.0.1:3000/api/v1/pokemons/803
