@@ -1,8 +1,12 @@
 module Api
     module V1
         class PokemonsController < ApplicationController
+            
             require 'will_paginate/array'
             require "csv"
+
+            #before_action :handlerCSV()
+
             def index
                 #get data from csv
                 pokemonsTmp = handlerCSV();
@@ -230,6 +234,7 @@ module Api
                 t.legendary = row['Legendary']
                 return t
             end
+
         end
     end
 end
