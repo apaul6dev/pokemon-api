@@ -35,7 +35,28 @@ module Api
 
             def create
                 pokemon = Pokemon.new(pokemon_params);
-                
+               
+                columns = [ 'id', 'name', 'type_one', 'type_two',
+                        'total', 'hp', 'attack', 'defense',
+                        'sp_atk', 'sp_def', 'speed', 'generation',
+                        'legendary' ]
+
+                csv_text = File.read(Rails.root.join("lib", "csvs", "pokemon.csv"))
+                csv = CSV.parse(csv_text, :headers => true, :encoding => "ISO-8859-1")
+                    
+                CSV.open(Rails.root.join("lib", "csvs", "pokemon.csv"), "a") do |csv|
+                    row_str = []
+                    columns.each do |attr_name|
+                        row_str.push(pokemon[attr_name]) 
+                    end 
+                    csv << row_str
+                end
+
+                render json: {
+                    status: 'Success',
+                    message: 'Pokemon Created',
+                    data: pokemon
+                }, status: :ok
 
             
                 #pokemon = Pokemon.new(pokemon_params);
@@ -104,20 +125,51 @@ module Api
             end
 
             def update
-                pokemon = Pokemon.find(params[:id]);
-                if pokemon.update(pokemon_params)
+                csv_text = File.read(Rails.root.join("lib", "csvs", "pokemon.csv"))
+                csv = CSV.parse(csv_text, :headers => true, :encoding => "ISO-8859-1")
+      
+                dataSelected = csv.select{ |row| row['#'] == params[:id]}
+                pokemons = []
+                dataSelected.each do |row| 
+                    pokemons.push(getPokemon(row))
+                end  
+
+                if pokemons.size > 0
+
+                    
+
+
+
+
+
                     render json: {
                         status: 'Success',
-                        message: 'Pokemon updated',
-                        data: pokemon
+                        message: 'Pokemon udated',
+                        data: pokemons
                     }, status: :ok
                 else
                     render json: {
                         status: 'Success',
-                        message: 'Pokemon no updated',
-                        data: pokemon
+                        message: 'Pokemon no found',
+                        data: []
                     }, status: :unprocessable_entity
                 end
+
+
+                #pokemon = Pokemon.find(params[:id]);
+                #if pokemon.update(pokemon_params)
+                #    render json: {
+                #        status: 'Success',
+                #        message: 'Pokemon updated',
+                #        data: pokemon
+                #    }, status: :ok
+                #else
+                #    render json: {
+                #        status: 'Success',
+                #        message: 'Pokemon no updated',
+                #        data: pokemon
+                #    }, status: :unprocessable_entity
+                #end
             end
 
             private
@@ -155,30 +207,6 @@ module Api
                 t.legendary = row['Legendary']
                 return t
             end
-
         end
     end
 end
-
-=begin
-pokemons= []
-                pokemons.push(pokemon)
-                data_csv_data = []
-                pokemons.each do |data|
-                  data_csv_data << {
-                        '#': data[:id],
-                        'Name': data[:name],
-                        'Type 1': data[:type_one],
-                        'Type 2': data[:type_two],
-                        'Total': data[:total],
-                        'HP': data[:hp],
-                        'Attack': data[:attack],
-                        'Defense': data[:defense],
-                        'Sp. Atk': data[:sp_atk],
-                        'Sp. Def': data[:sp_def],
-                        'Speed': data[:speed],
-                        'Generation': data[:generation],
-                        'Legendary': data[:legendary]
-                    }
-                end 
-=end
