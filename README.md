@@ -1,27 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project uses a .CSV file as a database, which can be updated, deleted, created, modified using Api Rest.
 
-Things you may want to cover:
+if you have problems with the migrations, execute this command: 
 
-* Ruby version
+rails db:migrate
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
 # pokemon-api
 
 
