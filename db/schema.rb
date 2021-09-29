@@ -12,18 +12,18 @@
 
 ActiveRecord::Schema.define(version: 2021_09_25_214321) do
 
-  create_table "pokemons", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "pokemons", force: :cascade do |t|
     t.string "name"
     t.string "type_one"
     t.string "type_two"
-    t.decimal "total", precision: 10
-    t.decimal "hp", precision: 10
-    t.decimal "attack", precision: 10
-    t.decimal "defense", precision: 10
-    t.decimal "sp_atk", precision: 10
-    t.decimal "sp_def", precision: 10
-    t.decimal "speed", precision: 10
-    t.decimal "generation", precision: 10
+    t.decimal "total"
+    t.decimal "hp"
+    t.decimal "attack"
+    t.decimal "defense"
+    t.decimal "sp_atk"
+    t.decimal "sp_def"
+    t.decimal "speed"
+    t.decimal "generation"
     t.boolean "legendary"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

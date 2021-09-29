@@ -2,9 +2,12 @@
 
 This project uses a .CSV file as a database, which can be updated, deleted, created, modified using Api Rest.
 
-if you have problems with the migrations, execute this command: 
+If you have trouble starting the project, run the following command:
 
 rails db:migrate
+
+Node: The application does not depend on a relational database but has classes of type record. You can check /lib/csvs/pokemons.csv and you can see how this file changes.
+
 
 # pokemon-api
 
